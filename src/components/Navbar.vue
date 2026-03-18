@@ -219,7 +219,8 @@ export default {
     props: {
         cartItems: {
             type: Array,
-            required: true
+            required: false,
+            default: () => []
         }
     },
     methods: {

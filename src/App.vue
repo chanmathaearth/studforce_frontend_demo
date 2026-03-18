@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import logo from '@/assets/logo.png';
 
 const isLoading = ref(true);
 
@@ -13,7 +14,7 @@ onMounted(() => {
 <template>
   <div class="relative min-h-screen">
     <div v-if="isLoading" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-90 z-50">
-      <img src="https://cdn.discordapp.com/attachments/1284521385909162036/1287819796112740443/logologo.png?ex=671098e5&is=670f4765&hm=bb0fb953948df0b95baa92f3de210eaaaac1df1f4151c6bb666b1020c09934b3&" 
+      <img :src="logo" 
            alt="App Logo" 
            class="w-64 h-64 animate-grow" />
     </div>

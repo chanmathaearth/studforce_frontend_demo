@@ -17,6 +17,8 @@ const selectedSize = ref(null);
 const product_detail = ref(null);
 const activeTab = ref('tab1');
 
+const cartItems = computed(() => cartStore.items);
+
 onMounted(async () => {
     const productId = route.params.productid;
 	console.log(productId);
@@ -24,8 +26,18 @@ onMounted(async () => {
 
     if (productStore.currentProduct) {
         product_detail.value = productStore.currentProduct;
+        currentSlideIndex.value = 0;
+        selectedSize.value = null;
+        selectedTabSize.value = 'EUR';
     }
 });
+
+const getImageUrl = (pic) => {
+    if (!pic) return '';
+    if (typeof pic === 'string') return pic;
+    if (typeof pic === 'object' && pic.image) return pic.image;
+    return '';
+};
 
 const nextSlide = () => {
     if (
@@ -131,7 +143,7 @@ const openTab = (tabId) => {
                             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                                 <div v-for="(pic_detail, index) in product_detail.images" :key="index"
                                     :class="['duration-700 ease-in-out', currentSlideIndex === index ? 'block' : 'hidden']">
-                                    <img :src="pic_detail.image" class="block w-full h-full object-cover" alt="Product Image" />
+                                    <img :src="getImageUrl(pic_detail)" class="block w-full h-full object-cover" alt="Product Image" />
                                 </div>
                             </div>
                         </div>

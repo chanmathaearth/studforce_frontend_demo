@@ -5,6 +5,7 @@ export const useProductStore = defineStore('product', {
     state: () =>
     ({
         list: [],
+        currentProduct: null,
         loaded: false,
     }),
     actions: {
